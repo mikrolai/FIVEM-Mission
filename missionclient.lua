@@ -25,7 +25,7 @@ while true do
 
 
 	--falls ja zeige Text an--
-	helpMessage("~INPUT_CONTEXT~ drücken um das Rennen zu starten!")
+	helpMessage("~INPUT_CONTEXT~ drücken um die Mission zu starten!")
 
 	--Überprüfe ob "E" gedrückt wurde--
 	if (IsControlJustReleased(1, 51)) then
