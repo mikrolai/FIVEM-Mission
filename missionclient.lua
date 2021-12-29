@@ -40,23 +40,24 @@ while true do
 
 -- Zeige Benachrichtigung(image, title, subtitle, message)
 SetNotificationBackgroundColor (6)
-ShowAdvNotification("CHAR_LESTER_DEATHWISH", "Mikrolai-Mission", "~u~Startpunkt erreicht")
+ShowAdvNotification("CHAR_LESTER_DEATHWISH", "Mikrolai-Mission", "~u~Mission gestartet!")
 					
 --Zeige Missionstext an--
 --Abhängigkeit: MissionText Resource--
-TriggerEvent("mt:missiontext", "Begebe dich zum ~y~Zielpunkt", 500)
+TriggerEvent("mt:missiontext", "Begebe dich zum ~y~Zielpunkt ~w~achte auf ~r~Wildtiere", 30000)
 			
 	--Erstelle ersten Wegpunkt--
 	--serverseitig--
-    	TriggerServerEvent('first_point:Blip')
-	RegisterNetEvent('first_point:Blip')
+    	--TriggerServerEvent('first_point:Blip')
+	--RegisterNetEvent('first_point:Blip')
 	first_point = AddBlipForCoord (2359.0, 5338.0, 117.0)
 
 --hier müssen wir "if dist < 3 then" & "if (IsControlJustReleased(1, 51)) then" mit 2x "end" beenden sonst wird die Distanz nicht durchgehend abgerufen--
 end
 end
 
-
+--lade so früh wie möglich das Gegner Model--
+RequestModel(-984709238)
 			
 --wandle Koordinaten vom ersten Punkt in Vector3 um--
         local coord = GetBlipCoords(first_point)
@@ -68,24 +69,59 @@ end
 
 	--Überprüfen wie weit der Spieler vom Marker entfernt ist--
 	local first_point_dist = GetDistanceBetweenCoords(erste.x, erste.y, erste.z, position.x, position.y, position.z, true)
+	first_wave = GetDistanceBetweenCoords(2359.0, 5338.0, 117.0, position.x, position.y, position.z, true)
 
 
-print (first_point_dist)
 
-	--Überprüfe ob die Entfernung unter 3 Meter ist--
+	--Überprüfe ob die Entfernung unter 3 Meter ist falls ja werden Gegner gespawned und der Wegpunkt gelöscht--
 	if first_point_dist < 3 then
+
+
 
 	--falls ja lösche Wegpunkt--
 	RemoveBlip(first_point)
 
-RequestModel(-984709238)
-				
-				local enemy1 = CreatePed(1, -984709238, 2359.0, 5338.0, 117.0, 10.0, true, false)
+TriggerEvent("mt:missiontext", "~w~besiege die ~r~Feinde", 30000)
+
+
+				local enemy1 = CreatePed(1, -984709238, 2260.924, 5318.339, 109.7214, 10.0, true, false)
 				SetPedAiBlip (enemy1, true)
         			SetPedRelationshipGroupHash(enemy1, GetHashKey('AMBIENT_GANG_LOST'))
         			GiveWeaponToPed(enemy1, 'WEAPON_PISTOL', 999, false, true)
         			TaskCombatPed(enemy1, PlayerPedId(), 0, 16)
-Wait(10)
+				
+				Wait(10)
+				local enemy2 = CreatePed(1, -984709238, 2300.132, 5338.468, 112.4300, 10.0, true, false)
+				SetPedAiBlip (enemy2, true)
+        			SetPedRelationshipGroupHash(enemy2, GetHashKey('AMBIENT_GANG_LOST'))
+        			GiveWeaponToPed(enemy2, 'WEAPON_PISTOL', 999, false, true)
+        			TaskCombatPed(enemy2, PlayerPedId(), 0, 16)
+
+				Wait(10)
+				local enemy3 = CreatePed(1, -984709238, 2325.113, 5366.131, 111.0863, 10.0, true, false)
+				SetPedAiBlip (enemy3, true)
+        			SetPedRelationshipGroupHash(enemy3, GetHashKey('AMBIENT_GANG_LOST'))
+        			GiveWeaponToPed(enemy3, 'WEAPON_PISTOL', 999, false, true)
+        			TaskCombatPed(enemy3, PlayerPedId(), 0, 16)
+
+				Wait(10)
+				local enemy4 = CreatePed(1, -984709238, 2199.874, 5409.707, 147.6169, 10.0, true, false)
+				SetPedAiBlip (enemy4, true)
+        			SetPedRelationshipGroupHash(enemy4, GetHashKey('AMBIENT_GANG_LOST'))
+        			GiveWeaponToPed(enemy4, 'WEAPON_PISTOL', 999, false, true)
+        			TaskCombatPed(enemy4, PlayerPedId(), 0, 16)
+
+				Wait(10)
+				local enemy5 = CreatePed(1, -984709238, 2201.416, 5311.135, 125.8224, 10.0, true, false)
+				SetPedAiBlip (enemy5, true)
+        			SetPedRelationshipGroupHash(enemy5, GetHashKey('AMBIENT_GANG_LOST'))
+        			GiveWeaponToPed(enemy5, 'WEAPON_PISTOL', 999, false, true)
+        			TaskCombatPed(enemy5, PlayerPedId(), 0, 16)
+
+
+
+
+
 
 end
 end	
