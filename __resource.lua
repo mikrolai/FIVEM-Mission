@@ -4,3 +4,6 @@ client_scripts {
 	"missionclient.lua"
 }
 
+server_scripts {
+	"missionserver.lua"
+}
