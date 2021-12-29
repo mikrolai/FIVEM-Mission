@@ -41,6 +41,9 @@ while true do
 -- Zeige Benachrichtigung(image, title, subtitle, message)
 SetNotificationBackgroundColor (6)
 ShowAdvNotification("CHAR_LESTER_DEATHWISH", "Mikrolai-Mission", "~u~Startpunkt erreicht")
+					
+--Zeige Missionstext an--
+TriggerEvent("mt:missiontext", "Begebe dich zum ~y~Zielpunkt", 500)
 			
 	--Erstelle ersten Wegpunkt--
 	--serverseitig--
