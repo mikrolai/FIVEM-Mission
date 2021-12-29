@@ -34,6 +34,8 @@ CreateThread(function()
 				--RegisterNetEvent('first_point:Blip')
 				first_point = AddBlipForCoord (2359.0, 5338.0, 117.0)
 				--hier müssen wir "if dist < 3 then" & "if (IsControlJustReleased(1, 51)) then" mit 2x "end" beenden sonst wird die Distanz nicht durchgehend abgerufen--
+				--Marker für ersten Wegpunkt erstellen--
+				DrawMarker(31, 2359.0, 5338.0, 117.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.0, 2.0, 2.0, 0, 0, 255, 50, true, true, 2, nil, nil, false)
 			end
 		end
 		--lade so früh wie möglich das Gegner Model--
