@@ -25,7 +25,7 @@ while true do
 
 
 	--falls ja zeige Text an--
-	helpMessage("~INPUT_CONTEXT~ drücken um die Mission zu starten!")
+	helpMessage("~INPUT_CONTEXT~ drücken um das Rennen zu starten!")
 
 	--Überprüfe ob "E" gedrückt wurde--
 	if (IsControlJustReleased(1, 51)) then
@@ -77,8 +77,11 @@ print (first_point_dist)
 RequestModel(-984709238)
 				
 				local enemy1 = CreatePed(1, -984709238, 2359.0, 5338.0, 117.0, 10.0, true, false)
-		
-
+				SetPedAiBlip (enemy1, true)
+        			SetPedRelationshipGroupHash(enemy1, GetHashKey('AMBIENT_GANG_LOST'))
+        			GiveWeaponToPed(enemy1, 'WEAPON_PISTOL', 999, false, true)
+        			TaskCombatPed(enemy1, PlayerPedId(), 0, 16)
+Wait(10)
 
 end
 end	
