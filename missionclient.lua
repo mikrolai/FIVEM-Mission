@@ -74,7 +74,9 @@ print (first_point_dist)
 	--falls ja lösche Wegpunkt--
 	RemoveBlip(first_point)
 
-
+RequestModel(-984709238)
+				
+				local enemy1 = CreatePed(1, -984709238, 2359.0, 5338.0, 117.0, 10.0, true, false)
 		
 
 
