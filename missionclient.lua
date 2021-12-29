@@ -72,7 +72,7 @@ print (first_point_dist)
 	if first_point_dist < 3 then
 
 	--falls ja lösche Wegpunkt--
-	removeBlip(first_point)
+	RemoveBlip(first_point)
 
 
 		
