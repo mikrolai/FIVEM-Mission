@@ -43,6 +43,9 @@ SetNotificationBackgroundColor (6)
 ShowAdvNotification("CHAR_LESTER_DEATHWISH", "Mikrolai-Mission", "~u~Startpunkt erreicht")
 			
 	--Erstelle ersten Wegpunkt--
+	--serverseitig--
+    	--TriggerServerEvent('first_point:Blip')
+	--RegisterNetEvent('first_point:Blip')
 	first_point = AddBlipForCoord (2359.0, 5338.0, 117.0)
 
 --hier müssen wir "if dist < 3 then" & "if (IsControlJustReleased(1, 51)) then" mit 2x "end" beenden sonst wird die Distanz nicht durchgehend abgerufen--
@@ -50,6 +53,8 @@ end
 end
 
 
+			
+--wandle Koordinaten vom ersten Punkt in Vector3 um--
         local coord = GetBlipCoords(first_point)
         blipX = coord.x
         blipY = coord.y
