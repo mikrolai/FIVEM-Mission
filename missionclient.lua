@@ -43,6 +43,7 @@ SetNotificationBackgroundColor (6)
 ShowAdvNotification("CHAR_LESTER_DEATHWISH", "Mikrolai-Mission", "~u~Startpunkt erreicht")
 					
 --Zeige Missionstext an--
+--Abhängigkeit: MissionText Resource--
 TriggerEvent("mt:missiontext", "Begebe dich zum ~y~Zielpunkt", 500)
 			
 	--Erstelle ersten Wegpunkt--
