@@ -1,58 +1,37 @@
 CreateThread(function()
-	while true do
-		--jeden Frame anzeigen--
-		Wait(0)
-		--Wir probieren eine Mission mit Startpunkt und Zielpunkt zu erstellen--
-		--##config vom Startpunkt##--
-		--Koordinaten vom Spieler--
-		local position = GetEntityCoords(PlayerPedId())
-		--Koordinaten vom Marker / der Startlinie--
-		local startpoint = { x = 2492.934, y = 5108.829, z = 45.16, heading = 320.0 }
-		--Marker erstellen--
-		DrawMarker(31, startpoint.x, startpoint.y, startpoint.z + 1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.0, 2.0, 2.0, 0, 0, 255, 50, true, true, 2, nil, nil, false)
-		--Überprüfen wie weit der Spieler vom Marker entfernt ist--
-		local dist = GetDistanceBetweenCoords(startpoint.x, startpoint.y, startpoint.z, position.x, position.y, position.z, true)
-		--Überprüfe ob die Entfernung unter 3 Meter ist--
-		if dist < 3 then
-			--falls ja zeige Text an--
-			helpMessage("~INPUT_CONTEXT~ drücken um das Rennen zu starten!")
-			--Überprüfe ob "E" gedrückt wurde--
-			if (IsControlJustReleased(1, 51)) then
-			
-				--#################--
-				--STARTPUNKT FERTIG--
-				--#################--
-				-- Zeige Benachrichtigung(image, title, subtitle, message)
+	while true do		
+		Wait(0)																																						--jeden Frame anzeigen
+																																									--Wir probieren eine Mission mit Startpunkt und Zielpunkt zu erstellen--
+																																									--##config vom Startpunkt##
+																																									--Koordinaten vom Spieler
+		local position = GetEntityCoords(PlayerPedId())																					
+		local startpoint = { x = 2492.934, y = 5108.829, z = 45.16, heading = 320.0 }																				--Koordinaten vom Marker / der Startlinie		
+		DrawMarker(31, startpoint.x, startpoint.y, startpoint.z + 1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.0, 2.0, 2.0, 0, 0, 255, 50, true, true, 2, nil, nil, false)	--Marker erstellen		
+		local dist = GetDistanceBetweenCoords(startpoint.x, startpoint.y, startpoint.z, position.x, position.y, position.z, true)									--Überprüfen wie weit der Spieler vom Marker entfernt ist		
+		if dist < 3 then																																			--Überprüfe ob die Entfernung unter 3 Meter ist			
+			helpMessage("~INPUT_CONTEXT~ drücken um das Rennen zu starten!")																						--falls ja zeige Text an			
+			if (IsControlJustReleased(1, 51)) then																													--Überprüfe ob "E" gedrückt wurde			
+																																									--#################--
+																																									--STARTPUNKT FERTIG--
+																																									--#################--
+																																									-- Zeige Benachrichtigung(image, title, subtitle, message)
 				SetNotificationBackgroundColor (6)
-				ShowAdvNotification("CHAR_LESTER_DEATHWISH", "Mikrolai-Mission", "~u~Mission gestartet!")					
-				--Zeige Missionstext an--
-				--Abhängigkeit: MissionText Resource--
-				TriggerEvent("mt:missiontext", "Begebe dich zum ~y~Zielpunkt ~w~achte auf ~r~Wildtiere", 30000)			
-				--Erstelle ersten Wegpunkt--
-				--serverseitig--
-					--TriggerServerEvent('first_point:Blip')
-				--RegisterNetEvent('first_point:Blip')
-				first_point = AddBlipForCoord (2359.0, 5338.0, 117.0)
-				--hier müssen wir "if dist < 3 then" & "if (IsControlJustReleased(1, 51)) then" mit 2x "end" beenden sonst wird die Distanz nicht durchgehend abgerufen--
-				--Marker für ersten Wegpunkt erstellen--
-				DrawMarker(31, 2359.0, 5338.0, 117.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.0, 2.0, 2.0, 0, 0, 255, 50, true, true, 2, nil, nil, false)
+				ShowAdvNotification("CHAR_LESTER_DEATHWISH", "Mikrolai-Mission", "~u~Mission gestartet!")
+				TriggerEvent("mt:missiontext", "Begebe dich zum ~y~Zielpunkt ~w~achte auf ~r~Wildtiere", 30000)														--Zeige Missionstext an Abhängigkeit: MissionText Resource				
+				first_point = AddBlipForCoord (2359.0, 5338.0, 117.0)																								--Erstelle ersten Wegpunkt				
+				DrawMarker(31, 2359.0, 5338.0, 117.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.0, 2.0, 2.0, 0, 0, 255, 50, true, true, 2, nil, nil, false)					--Marker für ersten Wegpunkt erstellen
 			end
-		end
-		--lade so früh wie möglich das Gegner Model--
-		RequestModel(-984709238)			
-		--wandle Koordinaten vom ersten Punkt in Vector3 um--
-		local coord = GetBlipCoords(first_point)
+		end		
+		RequestModel(-984709238)																																	--lade so früh wie möglich das Gegner Model		
+		local coord = GetBlipCoords(first_point)																													--wandle Koordinaten vom ersten Punkt in Vector3 um
 		blipX = coord.x
 		blipY = coord.y
 		blipZ = coord.z
-		local erste = vector3(blipX, blipY, blipZ)
-		--Überprüfen wie weit der Spieler vom Marker entfernt ist--
-		local first_point_dist = GetDistanceBetweenCoords(erste.x, erste.y, erste.z, position.x, position.y, position.z, true)
-		first_wave = GetDistanceBetweenCoords(2359.0, 5338.0, 117.0, position.x, position.y, position.z, true)
-		--Überprüfe ob die Entfernung unter 3 Meter ist falls ja werden Gegner gespawned und der Wegpunkt gelöscht--
-		if first_point_dist < 3 then
-			--falls ja lösche Wegpunkt--
-			RemoveBlip(first_point)
+		local erste = vector3(blipX, blipY, blipZ)		
+		local first_point_dist = GetDistanceBetweenCoords(erste.x, erste.y, erste.z, position.x, position.y, position.z, true)										--Überprüfen wie weit der Spieler vom Marker entfernt ist
+		first_wave = GetDistanceBetweenCoords(2359.0, 5338.0, 117.0, position.x, position.y, position.z, true)		
+		if first_point_dist < 3 then																																--Überprüfe ob die Entfernung unter 3 Meter ist falls ja werden Gegner gespawned und der Wegpunkt gelöscht			
+			RemoveBlip(first_point)																																	--falls ja lösche Wegpunkt
 			TriggerEvent("mt:missiontext", "~w~besiege die ~r~Feinde", 30000)
 			
 			local enemy1 = CreatePed(1, -984709238, 2260.924, 5318.339, 109.7214, 10.0, true, false)
@@ -91,8 +70,7 @@ CreateThread(function()
 	end	
 end)
 
---Anzeige der Schrift--
-function helpMessage(text, duration)
+function helpMessage(text, duration)																																--Anzeige der Schrift
     BeginTextCommandDisplayHelp("STRING")
     AddTextComponentSubstringPlayerName(text)
     EndTextCommandDisplayHelp(0, false, true, duration or 5000)
@@ -105,13 +83,14 @@ function ShowAdvNotification(image, title, subtitle, text)
 	DrawNotification(false, true);
 end
 
-
---Einstellungen für die Blips/Wegpunkte--
-				---NICHT AKTIV---
-				--local playerPed = GetPlayerPed(-1)
-				--local name = nurburg
-				--local position = GetEntityCoords(player)
-				--local range = 2.0
-				--local test = { x = 3720.0, y = -6543.0, z = 2200.0, heading = 320.0 }
-				--TriggerServerEvent('StreetRaces:listRaces_sv')
-				--SetPedCoordsKeepVehicle(playerPed, test.x, test.y, test.z)
+--[[
+	Einstellungen für die Blips/Wegpunkte
+NICHT AKTIV
+local playerPed = GetPlayerPed(-1)
+local name = nurburg
+local position = GetEntityCoords(player)
+local range = 2.0
+local test = { x = 3720.0, y = -6543.0, z = 2200.0, heading = 320.0 }
+TriggerServerEvent('StreetRaces:listRaces_sv')
+SetPedCoordsKeepVehicle(playerPed, test.x, test.y, test.z)
+]]--
