@@ -9,7 +9,7 @@ CreateThread(function()
 		local dist = GetDistanceBetweenCoords(CFG.startpoint.x, CFG.startpoint.y, CFG.startpoint.z, position.x, position.y, position.z, true)									--Überprüfen wie weit der Spieler vom Marker entfernt ist		
 		if dist < 3 then																																			--Überprüfe ob die Entfernung unter 3 Meter ist			
 			helpMessage("~INPUT_CONTEXT~ drücken um das Rennen zu starten!")																						--falls ja zeige Text an			
-			if (IsControlJustReleased(1, 51)) then																													--Überprüfe ob "E" gedrückt wurde			
+			if (IsControlJustReleased(1, CFG.Tasten.E)) then																													--Überprüfe ob "E" gedrückt wurde			
 																																									--#################--
 																																									--STARTPUNKT FERTIG--
 																																									--#################--
