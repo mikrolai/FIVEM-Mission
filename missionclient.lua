@@ -8,7 +8,7 @@ CreateThread(function()
 		DrawMarker(31, CFG.startpoint.x, CFG.startpoint.y, CFG.startpoint.z + 1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.0, 2.0, 2.0, 0, 0, 255, 50, true, true, 2, nil, nil, false)	--Marker erstellen		
 		local dist = GetDistanceBetweenCoords(CFG.startpoint.x, CFG.startpoint.y, CFG.startpoint.z, position.x, position.y, position.z, true)									--Überprüfen wie weit der Spieler vom Marker entfernt ist		
 		if dist < 3 then																																			--Überprüfe ob die Entfernung unter 3 Meter ist			
-			helpMessage("~INPUT_CONTEXT~ drücken um das Rennen zu starten!")																						--falls ja zeige Text an			
+			helpMessage("~INPUT_CONTEXT~ drücken um die Mission zu starten!")																						--falls ja zeige Text an			
 			if (IsControlJustReleased(1, CFG.Tasten.E)) then																													--Überprüfe ob "E" gedrückt wurde			
 																																									--#################--
 																																									--STARTPUNKT FERTIG--
