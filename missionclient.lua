@@ -5,9 +5,8 @@ CreateThread(function()
 																																									--##config vom Startpunkt##
 																																									--Koordinaten vom Spieler
 		local position = GetEntityCoords(PlayerPedId())																					
-		local startpoint = { x = 2492.934, y = 5108.829, z = 45.16, heading = 320.0 }																				--Koordinaten vom Marker / der Startlinie		
-		DrawMarker(31, startpoint.x, startpoint.y, startpoint.z + 1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.0, 2.0, 2.0, 0, 0, 255, 50, true, true, 2, nil, nil, false)	--Marker erstellen		
-		local dist = GetDistanceBetweenCoords(startpoint.x, startpoint.y, startpoint.z, position.x, position.y, position.z, true)									--Überprüfen wie weit der Spieler vom Marker entfernt ist		
+		DrawMarker(31, CFG.startpoint.x, CFG.startpoint.y, CFG.startpoint.z + 1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.0, 2.0, 2.0, 0, 0, 255, 50, true, true, 2, nil, nil, false)	--Marker erstellen		
+		local dist = GetDistanceBetweenCoords(CFG.startpoint.x, CFG.startpoint.y, CFG.startpoint.z, position.x, position.y, position.z, true)									--Überprüfen wie weit der Spieler vom Marker entfernt ist		
 		if dist < 3 then																																			--Überprüfe ob die Entfernung unter 3 Meter ist			
 			helpMessage("~INPUT_CONTEXT~ drücken um das Rennen zu starten!")																						--falls ja zeige Text an			
 			if (IsControlJustReleased(1, 51)) then																													--Überprüfe ob "E" gedrückt wurde			
