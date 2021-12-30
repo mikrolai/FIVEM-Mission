@@ -14,7 +14,7 @@ CreateThread(function()
 																																									--STARTPUNKT FERTIG--
 																																									--#################--
 																																									-- Zeige Benachrichtigung(image, title, subtitle, message)
-				SetNotificationBackgroundColor (6)
+				SetNotificationBackgroundColor(CFG.Farben.Rot)
 				ShowAdvNotification("CHAR_LESTER_DEATHWISH", "Mikrolai-Mission", "~u~Mission gestartet!")
 				TriggerEvent("mt:missiontext", "Begebe dich zum ~y~Zielpunkt ~w~achte auf ~r~Wildtiere", 30000)														--Zeige Missionstext an Abhängigkeit: MissionText Resource				
 				first_point = AddBlipForCoord (2359.0, 5338.0, 117.0)																								--Erstelle ersten Wegpunkt				
@@ -23,10 +23,7 @@ CreateThread(function()
 		end		
 		RequestModel(-984709238)																																	--lade so früh wie möglich das Gegner Model		
 		local coord = GetBlipCoords(first_point)																													--wandle Koordinaten vom ersten Punkt in Vector3 um
-		blipX = coord.x
-		blipY = coord.y
-		blipZ = coord.z
-		local erste = vector3(blipX, blipY, blipZ)		
+		local erste = vector3(coord.x, coord.y, coord.z)		
 		local first_point_dist = GetDistanceBetweenCoords(erste.x, erste.y, erste.z, position.x, position.y, position.z, true)										--Überprüfen wie weit der Spieler vom Marker entfernt ist
 		first_wave = GetDistanceBetweenCoords(2359.0, 5338.0, 117.0, position.x, position.y, position.z, true)		
 		if first_point_dist < 3 then																																--Überprüfe ob die Entfernung unter 3 Meter ist falls ja werden Gegner gespawned und der Wegpunkt gelöscht			
