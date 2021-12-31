@@ -7,3 +7,5 @@ CFG.Tasten.E = 51
 
 CFG.Farben = {}
 CFG.Farben.Rot = 6
+
+CFG.Gegnaz = {}
