@@ -62,9 +62,56 @@ CreateThread(function()
 			SetPedRelationshipGroupHash(enemy5, GetHashKey('AMBIENT_GANG_LOST'))
 			GiveWeaponToPed(enemy5, 'WEAPON_PISTOL', 999, false, true)
 			TaskCombatPed(enemy5, PlayerPedId(), 0, 16)
+				
+				
+					if enemy1_status == false or
+					enemy2_status == false or
+					enemy3_status == false or
+					enemy4_status == false or
+					enemy5_status == false then
+					fight1 = true
+					--wenn Gegner leben wird Thread fight1 gestartet--
+			end
 		end
 	end	
 end)
+
+--versuche die Abfrage ob Gegner am leben sind auszuschalten wenn alle tot sind--
+CreateThread(function()
+				while fight1 == true do
+				Wait(0)
+
+
+				--prüfe Gegner Status--
+
+				enemy1_status = IsPedDeadOrDying(enemy1, 1)
+				enemy2_status = IsPedDeadOrDying(enemy2, 1)
+				enemy3_status = IsPedDeadOrDying(enemy3, 1)
+				enemy4_status = IsPedDeadOrDying(enemy4, 1)
+				enemy5_status = IsPedDeadOrDying(enemy5, 1)
+
+
+				--wenn alle Gegner getötet wurden wird Welle 1 beendet--
+				if enemy1_status == 1 and
+				enemy2_status == 1 and
+				enemy3_status == 1 and
+				enemy4_status == 1 and
+				enemy5_status == 1 then
+				
+
+				print("enemies_dead")
+				
+
+				fight1 = false
+
+					
+
+
+end
+end
+end)
+
+
 
 function helpMessage(text, duration)																																--Anzeige der Schrift
     BeginTextCommandDisplayHelp("STRING")
