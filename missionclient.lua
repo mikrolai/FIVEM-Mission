@@ -44,7 +44,7 @@ CreateThread(function()
 			TaskCombatPed(enemy2, PlayerPedId(), 0, 16)
 			Wait(10)
 			
-			local enemy3 = CreatePed(1, -984709238, 2325.113, 5366.131, 111.0863, 10. 
+			local enemy3 = CreatePed(1, -984709238, 2325.113, 5366.131, 111.0863, 10.0, true, false) 
 			SetPedRelationshipGroupHash(enemy3, GetHashKey('AMBIENT_GANG_LOST'))
 			GiveWeaponToPed(enemy3, 'WEAPON_PISTOL', 999, false, true)
 			TaskCombatPed(enemy3, PlayerPedId(), 0, 16)
