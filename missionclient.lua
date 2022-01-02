@@ -1,7 +1,16 @@
 CreateThread(function()
 	while true do		
-		Wait(0)																																						--jeden Frame anzeigen
-
+		Wait(0)			
+		local dist = 0																																	--jeden Frame anzeigen
+		local position = GetEntityCoords(PlayerPedId())
+		for i = 1, #CFG.Missionen, 1 do
+			dist = GetDistanceBetweenCoords(CFG.Missionen[i].startpoint.x, CFG.Missionen[i].startpoint.y, CFG.Missionen[i].startpoint.z, position.x, position.y, position.z, true)
+			if dist < 3 then																																			--Überprüfe ob die Entfernung unter 3 Meter ist			
+				helpMessage("~INPUT_CONTEXT~ drücken um die Mission zu starten!")
+			end
+		end
+																																					
+--[[
 
 				print(enemy1_status)
 				print(fight1)
@@ -25,7 +34,7 @@ CreateThread(function()
 					end																																				--##config vom Startpunkt##
 																																									--Koordinaten vom Spieler
 		local position = GetEntityCoords(PlayerPedId())																					
-		DrawMarker(31, CFG.startpoint.x, CFG.startpoint.y, CFG.startpoint.z + 1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.0, 2.0, 2.0, 0, 0, 255, 50, true, true, 2, nil, nil, false)	--Marker erstellen		
+		--DrawMarker(31, CFG.startpoint.x, CFG.startpoint.y, CFG.startpoint.z + 1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.0, 2.0, 2.0, 0, 0, 255, 50, true, true, 2, nil, nil, false)	--Marker erstellen		
 		local dist = GetDistanceBetweenCoords(CFG.startpoint.x, CFG.startpoint.y, CFG.startpoint.z, position.x, position.y, position.z, true)									--Überprüfen wie weit der Spieler vom Marker entfernt ist		
 		if dist < 3 then																																			--Überprüfe ob die Entfernung unter 3 Meter ist			
 			helpMessage("~INPUT_CONTEXT~ drücken um die Mission zu starten!")																						--falls ja zeige Text an			
@@ -86,10 +95,12 @@ CreateThread(function()
 				
 	
 		end
+	]]--
 	end	
 end)
 
 --versuche die Abfrage ob Gegner am leben sind auszuschalten wenn alle tot sind--
+--[[
 CreateThread(function()
 
 
@@ -115,7 +126,7 @@ CreateThread(function()
 end
 end
 end)
-
+]]--
 
 
 function helpMessage(text, duration)																																--Anzeige der Schrift

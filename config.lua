@@ -9,3 +9,10 @@ CFG.Farben = {}
 CFG.Farben.Rot = 6
 
 CFG.Gegnaz = {}
+
+CFG.Missionen = {}
+CFG.Missionen[1] = {
+	name = "testmission",
+	gegneranzahl = 1,
+	startpoint = { x = 2492.934, y = 5108.829, z = 45.16, heading = 320.0 }
+}
