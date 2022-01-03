@@ -1,12 +1,18 @@
 CreateThread(function()
 	while true do		
 		Wait(0)			
+		for i = 1, #CFG.Missionen, 1 do
+			DrawMarker(CFG.Missionen[i].marker, CFG.Missionen[i].startpoint.x, CFG.Missionen[i].startpoint.y, CFG.Missionen[i].startpoint.z + 1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.0, 2.0, 2.0, 0, 0, 255, 50, true, true, 2, nil, nil, false)
+		end
 		local dist = 0																																	--jeden Frame anzeigen
 		local position = GetEntityCoords(PlayerPedId())
 		for i = 1, #CFG.Missionen, 1 do
 			dist = GetDistanceBetweenCoords(CFG.Missionen[i].startpoint.x, CFG.Missionen[i].startpoint.y, CFG.Missionen[i].startpoint.z, position.x, position.y, position.z, true)
 			if dist < 3 then																																			--Überprüfe ob die Entfernung unter 3 Meter ist			
 				helpMessage("~INPUT_CONTEXT~ drücken um die Mission zu starten!")
+				if (IsControlJustReleased(1, CFG.Tasten.E)) then
+					TriggerServerEvent('missionen:start', i)
+				end
 			end
 		end
 																																					
